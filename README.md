@@ -1,3 +1,11 @@
+# React Expenses App
+
+Includes:
+
+- React basics and working with components
+- React state and working with events
+- Rendering lists and conditional content
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
