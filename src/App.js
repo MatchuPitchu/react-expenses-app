@@ -5,6 +5,7 @@ import { useState } from 'react';
 import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from './components/Expenses/Expenses';
 
+// example data outside of component to avoid recreating of const while rerendering of component
 const DUMMY_DATA = [
   {
     id: 'e1',
