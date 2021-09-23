@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
+const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
   // when I read a value of an input it's always a string (so numbers and dates are also read as strings)
   const [userInput, setUserInput] = useState({
     title: '',
@@ -29,14 +29,18 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
   const dateChangeHandler = ({ target }) => {
     setUserInput((prev) => ({
       ...prev,
-      date: new Date(target.value), // construct new Date obj to which I pass entered date string
+      date: target.value,
     }));
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const submittedData = {
+      ...userInput,
+      date: new Date(userInput.date), // construct new Date obj to which I pass entered date string
+    };
     // use fn that is passed as a prop into this component to pass data bottom-up (from child to parent component)
-    onSaveExpenseData(userInput);
+    onSaveExpenseData(submittedData);
 
     setUserInput({
       title: '',
@@ -79,6 +83,9 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
         </div>
       </div>
       <div className='new-expense__actions'>
+        <button type='button' onClick={onCancel}>
+          Cancel
+        </button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
